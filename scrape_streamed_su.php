@@ -131,20 +131,6 @@ function generateM3U8($items) {
     file_put_contents('playlist.m3u8', $m3u8);
 }
 
-function generateProxyM3U8($items) {
-    $m3u8 = "#EXTM3U url-tvg=\"https://raw.githubusercontent.com/dtankdempse/streamed-su-sports/main/epg.xml\"\n";
-    foreach ($items as $item) {        
-        $date = new DateTime("@".($item['time'] / 1000));
-        $date->setTimezone(new DateTimeZone('America/New_York'));
-        $formattedTime = $date->format('h:i A -');
-
-        $m3u8 .= "#EXTINF:-1 tvg-id=\"" . $item['epg'] . "\" tvg-name=\"" . $item['title'] . "\" tvg-logo=\"" . $item['eventImage'] . "\" group-title=\"" . $item['type'] . "\",";
-        $m3u8 .= $formattedTime . " " . $item['title'] . " - " . $item['date'] . "\n";
-        $m3u8 .= "https://m3u8.justchill.workers.dev?url=" . $item['stream'] . "&referer=" . $item['Referer'] . "\n";
-    }
-    file_put_contents('proxied_playlist.m3u8', $m3u8);
-}
-
 function generateTivimateM3U8($items) {
     $m3u8 = "#EXTM3U url-tvg=\"https://raw.githubusercontent.com/dtankdempse/streamed-su-sports/main/epg.xml\"\n";
     foreach ($items as $item) {        
@@ -172,21 +158,6 @@ function generateVLC($items) {
         $vlc .= $item['stream'] . "\n";
     }
     file_put_contents('vlc_playlist.m3u8', $vlc);
-}
-
-function generateKODIPOP($items) {
-	$kodipop = "#EXTM3U url-tvg=\"https://raw.githubusercontent.com/dtankdempse/streamed-su-sports/main/epg.xml\"\n";
-    foreach ($items as $item) {
-        $date = new DateTime("@".($item['time'] / 1000));
-        $date->setTimezone(new DateTimeZone('America/New_York'));
-        $formattedTime = $date->format('h:i A -');
-
-        $kodipop .= "#EXTINF:-1 tvg-id=\"" . $item['epg'] . "\" tvg-name=\"" . $item['title'] . "\" tvg-logo=\"" . $item['eventImage'] . "\" group-title=\"" . $item['type'] . "\",";
-        $kodipop .= $formattedTime . " " . $item['title'] . " - " . $item['date'] . "\n";
-        $kodipop .= "#KODIPROP:inputstream.adaptive.stream_headers=Referer=" . urlencode($item['Referer']) . "\n";
-        $kodipop .= $item['stream'] . "\n";
-    }
-    file_put_contents('kodi_playlist.m3u8', $kodipop);
 }
 
 function generateEPG($items) {
