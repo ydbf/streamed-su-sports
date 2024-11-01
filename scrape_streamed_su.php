@@ -85,7 +85,7 @@ function discoverListings() {
                 $timestamp = $match['date'] / 1000;
                 $date = new DateTime();
                 $date->setTimestamp($timestamp);
-                $date->setTimezone(new DateTimeZone('America/New_York'));
+                $date->setTimezone(new DateTimeZone('Australia/Sydney'));
                 $formattedDate = $date->format('h:i A T - (m/d/Y)');
                 $streamUrl = "https://rr.vipstreams.in/" . $match['sources'][0]['source'] . "/js/" . $match['sources'][0]['id'] . "/1/playlist.m3u8";
                 $epgId = md5($match['id'] . $match['date']);
