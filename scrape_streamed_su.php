@@ -6,7 +6,7 @@ function discoverListings() {
     $maxRetries = 3;
     $attempt = 0;
     $success = false;
-    $apiUrl = base64_decode('aHR0cHM6Ly9mZXRjaC5kYXRhLXNlYXJjaC53b3JrZXJzLmRldi8/dXJsPWh0dHBzOi8vc3RyZWFtZWQuc3UvYXBpL21hdGNoZXMvYWxs');
+    $apiUrl = 'https://raw.githubusercontent.com/dtankdempse/streamed-su-sports/refs/heads/main/streamed_su.json';
 
     while ($attempt < $maxRetries && !$success) {
         $attempt++;
