@@ -18,7 +18,7 @@ jobs:
     - name: Scrape Streamed
       run: |
           echo "Scraping Streamed"
-          curl -fSL https://streamed.su/api/matches/all -o output.json
+          curl -o output.json https://streamed.su/api/matches/all 
 
     - name: Log the Scraped File.
       run: |
