@@ -15,14 +15,14 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0 
 
-    - name: Download M3U8 files
+    - name: Scrape Streamed
       run: |
           echo "Scraping Streamed"
-          curl -fSL "https://streamed.su/api/matches/all" -o "output.json"
+          curl -fSL https://streamed.su/api/matches/all -o output.json
 
-    - name: Log the downloaded M3U8 file details
+    - name: Log the Scraped File.
       run: |
-          if [ -f "output.json ]; then
+          if [ -f "output.json" ]; then
             echo "output.json downloaded successfully."
             ls -lh "output.json"
           else
@@ -30,7 +30,7 @@ jobs:
           fi
 
 
-    - name: Commit and push the M3U8 files (Squash Commit)
+    - name: Commit and push the Scraped File(Squash Commit)
       run: |
           git config --global user.name "actions-user"
           git config --global user.email "actions@github.com"
