@@ -1,10 +1,5 @@
 name: Scrape and Commit Playlists
 
-on:
-  schedule:
-    - cron: '0 */3 * * *'
-  workflow_dispatch:
-
 jobs:
   scrape-and-commit:
     runs-on: ubuntu-latest
